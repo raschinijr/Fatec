@@ -1,0 +1,58 @@
+Sub predio()
+Dim iv As Integer, ia As Integer, lp As Integer, rte As Integer, pe As Integer, ps As Integer
+Dim aux As Boolean
+
+'''IV índice de viagens, IA índice de andar, LP limite de pessoas, RTE resultado total de entradas
+'''PE pessoas entrando, PS pessoas saindo
+
+MsgBox "Todo dia o elevador realiza 30 viagens do primeiro ao décimo andar"
+MsgBox "Entre com números de pessoas que entram e saem do elevador entre um andar e outro"
+MsgBox "O elevador pode carregar o máximo de 06 pessoas e ao final de toda viagem ele desce vazio e o processo recomeça"
+
+For iv = 1 To 30
+    For ia = 1 To 10
+    Do Until aux = True
+    If ia = 11 Then Exit For
+        If ia = 1 Then
+        lp = 0
+        pe = 0
+        MsgBox "O elevador está no andar " & ia
+        pe = InputBox("Quantas pessoas entraram no elevador neste andar?")
+        lp = pe + lp
+            If lp <= 6 And lp >= 0 Then
+            ia = ia + 1
+            rte = rte + pe
+        
+            ElseIf lp < 0 Or pe < 0 Or ps < 0 Then MsgBox "Quantidade inválida." '''O valor de AUX já está em false
+         
+            Else
+            MsgBox "Quantidade de pessoas ultrapassa o máximo que o elevador suporta, entre com um novo valor." & ia
+            aux = False
+            End If
+    
+        Else
+
+        MsgBox "O elevador está no andar " & ia
+        ps = InputBox("Quantas pessoas estão saindo do elevador neste andar?")
+        lp = lp - ps
+        pe = InputBox("Quantas pessoas estão entrando no elevador neste andar?")
+        lp = pe + lp
+            If lp <= 6 And lp >= 0 Then
+            ia = ia + 1
+            rte = rte + pe
+        
+            ElseIf lp < 0 Or pe < 0 Or ps < 0 Then MsgBox "Quantidade inválida."
+         
+            Else
+            MsgBox "Quantidade de pessoas ultrapassa o máximo que o elevador suporta, entre com um novo valor." & ia
+            aux = False
+            End If
+        End If
+    
+    Loop
+    Next ia
+Next iv
+MsgBox "o total de pessoas que entraram no elevador foi " & rte
+
+End Sub
+
